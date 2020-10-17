@@ -6,4 +6,4 @@ RUN apt-get install -y python
 
 COPY . .
 RUN npm install
-ENTRYPOINT ["npm", "run", "start"]
+CMD ["npm", "run", "start"]
