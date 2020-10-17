@@ -1,4 +1,4 @@
-name: Slow CI :(
+name: Slow CI 😢
 on: [pull_request]
 
 jobs:
@@ -7,5 +7,9 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
+    - name: Initialise
+      run: apt-get update && apt-get upgrade -y
     - name: Build Docker Image
       run: docker build ./level1 --file level1/Dockerfile --tag ci-racer/level1:0.0.1
+    - name: Run Tests
+      run: docker run -e CI=true ci-racer/level1:0.0.1 npm run test
